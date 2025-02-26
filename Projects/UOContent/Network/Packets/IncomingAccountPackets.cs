@@ -308,6 +308,11 @@ public static class IncomingAccountPackets
 
     private static int GenerateAuthID(this NetState state)
     {
+        return GenerateAuthID(state.Version);
+    }
+
+    public static int GenerateAuthID(ClientVersion version)
+    {
         if (_authIDWindow.Count == _authIDWindowSize)
         {
             var oldestID = 0;
@@ -337,7 +342,7 @@ public static class IncomingAccountPackets
             }
         } while (_authIDWindow.ContainsKey(authID));
 
-        _authIDWindow[authID] = new AuthIDPersistence(state.Version);
+        _authIDWindow[authID] = new AuthIDPersistence(version);
 
         return authID;
     }
