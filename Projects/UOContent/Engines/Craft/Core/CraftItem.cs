@@ -740,6 +740,7 @@ namespace Server.Engines.Craft
                 m_ResAmount = 0;
                 m_System = craftSystem;
 
+                //TODO - Add Gump for hue selection here
                 index = IsQuantityType(types)
                     ? ConsumeQuantity(ourPack, types, amounts)
                     : ourPack.ConsumeTotalGrouped(types, amounts, true, OnResourceConsumed, CheckHueGrouping);
@@ -946,7 +947,7 @@ namespace Server.Engines.Craft
                 return;
             }
 
-            var badCraft = craftSystem.CanCraft(from, tool, ItemType);
+            var badCraft = craftSystem.CanCraft(from, tool, ItemType); //all error messages are a number greater than zero
 
             if (badCraft > 0)
             {
